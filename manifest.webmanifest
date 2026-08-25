@@ -1,0 +1,18 @@
+{
+  "name": "SyncWave Music & Android Companion",
+  "short_name": "SyncWave",
+  "description": "High-fidelity gapless audio player with real-time Android device sync, offline IndexedDB cache, and 10-band DSP equalizer",
+  "start_url": "/?view=android",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1C1B1F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

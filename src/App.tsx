@@ -26,6 +26,7 @@ import { OfflineManagerModal } from "./components/OfflineManagerModal";
 import { PlaylistManagerModal } from "./components/PlaylistManager";
 import { TrackInfoModal } from "./components/TrackInfoModal";
 import { HomePage } from "./components/HomePage";
+import { AndroidCompanionView } from "./components/AndroidCompanionView";
 import {
   FolderOpen,
   Cloud,
@@ -42,7 +43,7 @@ import confetti from "canvas-confetti";
 
 export default function App() {
   // --- Core State ---
-  const [currentView, setCurrentView] = useState<"home" | "music">("home");
+  const [currentView, setCurrentView] = useState<"home" | "music" | "android">("home");
   const [tracks, setTracks] = useState<Track[]>([]);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null);
@@ -714,11 +715,12 @@ export default function App() {
           favoritesCount={favoritesCount}
         />
 
-        {/* Main Content Area: Home Portal or Music Library View */}
+        {/* Main Content Area: Home Portal, Android Companion, or Music Library View */}
         <main id="main-content-view" className="flex-1 flex flex-col min-w-0 min-h-0 overflow-y-auto">
           {currentView === "home" ? (
             <HomePage
               onOpenMusic={() => setCurrentView("music")}
+              onOpenAndroidApp={() => setCurrentView("android")}
               onOpenEqualizer={() => setIsEqualizerOpen(true)}
               onOpenCloudSync={() => setIsSyncModalOpen(true)}
               onOpenOfflineVault={() => setIsOfflineManagerOpen(true)}
@@ -732,6 +734,33 @@ export default function App() {
               eqSettings={eqSettings}
               syncState={syncState}
               activeAccentColor={activeAccentColor}
+            />
+          ) : currentView === "android" ? (
+            <AndroidCompanionView
+              tracks={tracks}
+              currentTrack={currentTrack}
+              playbackState={playbackState}
+              eqSettings={eqSettings}
+              syncState={syncState}
+              activeAccentColor={activeAccentColor}
+              onPlayTrack={(track) => playTrack(track, tracks)}
+              onTogglePlayPause={handleTogglePlayPause}
+              onNextTrack={handleNextTrack}
+              onPrevTrack={handlePrevTrack}
+              onSeek={handleSeek}
+              onSetVolume={handleVolumeChange}
+              onToggleEq={(enabled) =>
+                setEqSettings((prev) => ({ ...prev, isEnabled: enabled }))
+              }
+              onUpdateEqBand={(bandIndex, gain) => {
+                setEqSettings((prev) => {
+                  const newBands = [...prev.bandGains];
+                  newBands[bandIndex] = gain;
+                  return { ...prev, bandGains: newBands };
+                });
+              }}
+              onPairWithCode={handleJoinClientSession}
+              onOpenDesktopView={() => setCurrentView("music")}
             />
           ) : (
             <TrackList

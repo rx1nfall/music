@@ -23,8 +23,8 @@ import {
 } from "../types/music";
 
 interface HeaderProps {
-  currentView: "home" | "music";
-  onNavigateView: (view: "home" | "music") => void;
+  currentView: "home" | "music" | "android";
+  onNavigateView: (view: "home" | "music" | "android") => void;
   searchQuery: string;
   onSearchChange: (q: string) => void;
   syncState: SyncSessionState;
@@ -112,12 +112,12 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </button>
 
-        {/* Home & Music Page Navigation Switcher */}
+        {/* Home, Music, and Android App Page Navigation Switcher */}
         <div className="hidden sm:flex items-center p-1 rounded-full bg-[#2B2930] border border-[#49454F]/40 ml-2">
           <button
             id="btn-nav-view-home"
             onClick={() => onNavigateView("home")}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
               currentView === "home"
                 ? "bg-[#D0BCFF] text-[#381E72] shadow-sm"
                 : "text-[#CAC4D0] hover:text-[#E6E1E5]"
@@ -129,7 +129,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="btn-nav-view-music"
             onClick={() => onNavigateView("music")}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
               currentView === "music"
                 ? "bg-[#D0BCFF] text-[#381E72] shadow-sm"
                 : "text-[#CAC4D0] hover:text-[#E6E1E5]"
@@ -137,6 +137,18 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Music2 className="w-3.5 h-3.5" />
             <span>Music</span>
+          </button>
+          <button
+            id="btn-nav-view-android"
+            onClick={() => onNavigateView("android")}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+              currentView === "android"
+                ? "bg-[#D0BCFF] text-[#381E72] shadow-sm"
+                : "text-[#CAC4D0] hover:text-[#E6E1E5]"
+            }`}
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+            <span>Android App</span>
           </button>
         </div>
 

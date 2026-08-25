@@ -15,6 +15,7 @@ import {
   Shield,
   Home,
   Compass,
+  Smartphone,
 } from "lucide-react";
 import { Playlist } from "../types/music";
 
@@ -29,8 +30,8 @@ export type NavTab =
   | "lossless";
 
 interface SidebarProps {
-  currentView?: "home" | "music";
-  onNavigateView?: (view: "home" | "music") => void;
+  currentView?: "home" | "music" | "android";
+  onNavigateView?: (view: "home" | "music" | "android") => void;
   activeTab: NavTab;
   onTabSelect: (tab: NavTab) => void;
   playlists: Playlist[];
@@ -112,7 +113,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Navigation Sections */}
       <div className="space-y-6 flex-1">
         {/* Home & Overview Quick Launch */}
-        <div>
+        <div className="space-y-1">
           <div className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-[#938F99]">
             Overview
           </div>
@@ -121,7 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             onClick={() => {
               if (onNavigateView) onNavigateView("home");
             }}
-            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs font-bold transition-all ${
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
               currentView === "home"
                 ? "shadow-sm font-bold"
                 : "text-[#CAC4D0] hover:bg-[#2B2930] hover:text-[#E6E1E5]"
@@ -143,7 +144,38 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   : "bg-[#2B2930] text-[#CAC4D0] border border-[#49454F]/40"
               }`}
             >
-              Main
+              Portal
+            </span>
+          </button>
+
+          <button
+            id="nav-item-android-companion"
+            onClick={() => {
+              if (onNavigateView) onNavigateView("android");
+            }}
+            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
+              currentView === "android"
+                ? "shadow-sm font-bold"
+                : "text-[#CAC4D0] hover:bg-[#2B2930] hover:text-[#E6E1E5]"
+            }`}
+            style={
+              currentView === "android"
+                ? { backgroundColor: activeAccentColor, color: "#381E72" }
+                : undefined
+            }
+          >
+            <div className="flex items-center gap-2.5">
+              <Smartphone className="w-4 h-4" />
+              <span>Android App</span>
+            </div>
+            <span
+              className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
+                currentView === "android"
+                  ? "bg-[#381E72]/20 text-[#381E72]"
+                  : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
+              }`}
+            >
+              Sync
             </span>
           </button>
         </div>

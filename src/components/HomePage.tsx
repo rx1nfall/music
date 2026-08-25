@@ -33,6 +33,7 @@ import { Track, PlaybackState, EqualizerSettings, SyncSessionState } from "../ty
 
 interface HomePageProps {
   onOpenMusic: () => void;
+  onOpenAndroidApp?: () => void;
   onOpenEqualizer: () => void;
   onOpenCloudSync: () => void;
   onOpenOfflineVault: () => void;
@@ -50,6 +51,7 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({
   onOpenMusic,
+  onOpenAndroidApp,
   onOpenEqualizer,
   onOpenCloudSync,
   onOpenOfflineVault,
@@ -464,6 +466,39 @@ export const HomePage: React.FC<HomePageProps> = ({
               <span className="text-[#CAC4D0]">Drag & Drop Folders</span>
               <span className="text-[#D0BCFF] font-bold flex items-center gap-1">
                 Scan Directory &rarr;
+              </span>
+            </div>
+          </div>
+
+          {/* F. Android Companion App Portal */}
+          <div
+            id="portal-card-android-companion"
+            onClick={onOpenAndroidApp}
+            className="p-6 rounded-3xl bg-gradient-to-br from-[#1C1B1F] via-[#26242B] to-[#1C1B1F] border border-emerald-500/40 hover:border-emerald-400 shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer group flex flex-col justify-between"
+          >
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="p-3 rounded-2xl bg-emerald-950/40 text-emerald-300 border border-emerald-500/30 group-hover:scale-105 transition-transform">
+                  <Smartphone className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  Android 15 &bull; Media3
+                </span>
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-[#E6E1E5] group-hover:text-emerald-300 transition-colors">
+                  Android Companion App
+                </h3>
+                <p className="text-xs text-[#938F99] mt-1">
+                  ExoPlayer Media3 Kotlin native companion with 6-digit sync & PWA install support.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-[#49454F]/20 flex items-center justify-between text-xs">
+              <span className="text-emerald-400 font-mono text-[11px]">Download ZIP / Run Simulator</span>
+              <span className="text-emerald-300 font-bold flex items-center gap-1">
+                Open App &rarr;
               </span>
             </div>
           </div>
