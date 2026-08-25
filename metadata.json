@@ -1,0 +1,6 @@
+{
+  "name": "SyncWave Music Hub",
+  "description": "Material You high-fidelity cloud & local audio player with cross-device sync, folder import, offline playback, 10-band equalizer, and gapless playback.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

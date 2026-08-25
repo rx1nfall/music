@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --md-sys-color-background: #121212;
+    --md-sys-color-surface: #121212;
+    --md-sys-color-surface-dim: #121212;
+    --md-sys-color-surface-bright: #36343B;
+    --md-sys-color-surface-container-lowest: #0D0D0D;
+    --md-sys-color-surface-container-low: #1C1B1F;
+    --md-sys-color-surface-container: #211F26;
+    --md-sys-color-surface-container-high: #2B2930;
+    --md-sys-color-surface-container-highest: #36343B;
+    --md-sys-color-on-surface: #E6E1E5;
+    --md-sys-color-on-surface-variant: #CAC4D0;
+    --md-sys-color-outline: #79747E;
+    --md-sys-color-outline-variant: #49454F;
+    --md-sys-color-primary: #D0BCFF;
+    --md-sys-color-on-primary: #381E72;
+    --md-sys-color-primary-container: #4F378B;
+    --md-sys-color-on-primary-container: #EADDFF;
+    --md-sys-color-secondary: #CCC2DC;
+    --md-sys-color-on-secondary: #332D41;
+    --md-sys-color-secondary-container: #4A4458;
+    --md-sys-color-on-secondary-container: #E8DEF8;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-surface);
+  }
+}
+
+@layer utilities {
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 18s linear infinite;
+  }
+
+  .elegant-glass {
+    background: rgba(28, 27, 31, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .elegant-card {
+    background: #211F26;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .elegant-card-high {
+    background: #2B2930;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Elegant Dark scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(208, 188, 255, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(208, 188, 255, 0.35);
+}
+
+/* Range input styling for sleek sliders */
+input[type="range"] {
+  accent-color: #D0BCFF;
+}
+
